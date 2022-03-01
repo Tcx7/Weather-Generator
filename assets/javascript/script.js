@@ -1,24 +1,33 @@
 var userInput = document.getElementById("userInput");
 var searchBtn = document.getElementById("searchBtn");
-var gifContent = document.getElementById("gif-content");
+var weatherContent = document.getElementById("weather-content");
 
-searchBtn.addEventListener("click", randomGif);
+searchBtn.addEventListener("click", weather_function);
 
-function randomGif(e) {
-  gifContent.innerHTML = "";
+function weather_function(e) {
+  weatherContent.innerHTML = "";
   e.preventDefault();
   fetch(
-    `https://api.giphy.com/v1/gifs/search?api_key=hNBHmVSiNKgqGrNu6IFzi12Tsa7w2L0s&q=${userInput.value}&limit=8&offset=0&rating=g&lang=en`
+    `http://api.weatherapi.com/v1/current.json?key=b97038a6315e4c7cb4725000220802&q=${userInput.value}&aqi=no`
   )
     .then((res) => res.json())
     .then((content) => {
-      for (let i = 0; i < 8; i++) {
-        console.log(content.data[i].images.downsized.url);
-        let createImg = document.createElement("img");
-        createImg.classList.add("giphyImg");
-        createImg.src = content.data[i].images.downsized.url;
-        console.log(createImg);
-        gifContent.appendChild(createImg);
-      }
+      console.log(content);
+      let createElem = document.createElement("h1");
+      let createLocation = document.createTextNode(content.location.name);
+      createElem.appendChild(createLocation);
+      createElem.classList.add("stats");
+      weatherContent.appendChild(createElem);
+      let createElem2 = document.createElement("h1");
+      let createFaren = document.createTextNode(
+        ` is ${content.current.temp_f}° right now.`
+      );
+      createElem2.appendChild(createFaren);
+      createElem2.classList.add("stats");
+      weatherContent.appendChild(createElem2);
     });
+}
+
+async function findWeather() {
+  console.log("ee");
 }

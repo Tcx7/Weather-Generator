@@ -18,11 +18,10 @@ body {
   /* left: 50%; */
   margin: 0% 20%;
 }
-#gif-content {
+/* #weather-content {
   display: flex;
   height: 80%;
-  flex-wrap: wrap;
-}
+} */
 
 h1 {
   display: flex;
@@ -38,3 +37,9 @@ h1 {
   width: 25%;
   height: 50%;
 }
+/* 
+.stats {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */
